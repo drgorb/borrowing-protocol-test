@@ -42,15 +42,15 @@ class tptamm {
     @Test
     fun priceEvolution() {
         val amm = Amm(100000.0, 1000000.0)
-        val ratio = 0.8
+        val ratio = 0.85
         var veri5Treasury: Double = 0.0
-        while(amm.beur < 100100000.0) {
-            val tpt = amm.getTpt(100.0)
-            veri5Treasury += amm.getBeur(5.0 / amm.price())
+        for(i in 1..1000000) {
+            val tpt = amm.getTpt(95.0)
+            veri5Treasury += 5//amm.getBeur(5.0 / amm.price())
             val beur = amm.getBeur(tpt * ratio)
             amm.addLiquidity(beur, beur / amm.price())
         }
         println("supply tpt: ${amm.tpt} beur: ${amm.beur} price: ${amm.price()}")
-        println("fees tpt: ${amm.tptFees} beur: ${amm.beurFees} veri5Treasury ${veri5Treasury}")
+        println("fees tpt: ${amm.tptFees} beur: ${amm.beurFees} veri5Treasury ${veri5Treasury} ")
     }
 }
